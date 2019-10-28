@@ -1,36 +1,22 @@
 import React from "react";
 import * as Config from "../module-config/module-config";
 
-// I was thinking I'd have the context shared by having the module
-// writer do
-// <UseConfig moduleName="@openmrs/esm-login">
-//   < ... >
-//     <Bar />
-//   </ ... >
-// </UseConfig>
-//
-// where Bar would ideally be able to do
-//   const moduleConfig = useModuleConfig()
-//
-type UseConfigProps = { moduleName: string; children: React.ReactNode };
-export function UseConfig(props: UseConfigProps) {
-  const ModuleNameContext = React.createContext(props.moduleName);
+export const ModuleNameContext = React.createContext(null);
 
-  // how do I make this available to descendants?
-  function useModuleConfig() {
-    const [config, setConfig] = React.useState(null);
-    const moduleName = React.useContext(ModuleNameContext);
-    if (!config) {
-      throw Config.getConfig(moduleName);
-    } else {
-      return config;
-    }
+export function useConfig() {
+  const moduleName = React.useContext(ModuleNameContext);
+  const [config, setConfig]: [null | Object, Function] = React.useState(null);
+  if (!moduleName) {
+    throw Error(
+      "ModuleNameContext has not been provided. This should come from openmrs-react-root-decorator"
+    );
   }
-
-  return (
-    /* I assume we don't want to make all client code use Suspense */
-    <React.Suspense fallback={<div>loading config...</div>}>
-      {props.children}
-    </React.Suspense>
-  );
+  if (!config) {
+    // React will prevent the client component from rendering until the promise resolves
+    throw Config.getConfig(moduleName).then(res => {
+      setConfig(res);
+    });
+  } else {
+    return config;
+  }
 }
