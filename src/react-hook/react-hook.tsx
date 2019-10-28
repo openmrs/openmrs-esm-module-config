@@ -3,9 +3,17 @@ import * as Config from "../module-config/module-config";
 
 export const ModuleNameContext = React.createContext(null);
 
+// As written, this will not work to provide config to more than one module.
+// `config` will be shared across client modules, resulting in all modules
+// receiving the configuration for the module that happens to call this first.
+//
+// When using useState to manage the config, the browser tab goes into infinite
+// recursion via setConfig().
+//
+let config;
 export function useConfig() {
   const moduleName = React.useContext(ModuleNameContext);
-  const [config, setConfig]: [null | Object, Function] = React.useState(null);
+  //  const [config, setConfig]: [null | Object, Function] = React.useState(null);
   if (!moduleName) {
     throw Error(
       "ModuleNameContext has not been provided. This should come from openmrs-react-root-decorator"
@@ -14,7 +22,8 @@ export function useConfig() {
   if (!config) {
     // React will prevent the client component from rendering until the promise resolves
     throw Config.getConfig(moduleName).then(res => {
-      setConfig(res);
+      config = res;
+      //      setConfig(res);
     });
   } else {
     return config;
