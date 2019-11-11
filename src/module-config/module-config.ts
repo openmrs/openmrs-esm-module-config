@@ -34,10 +34,13 @@ async function getImportMapConfigFile(): Promise<void> {
   } catch {
     importMapConfigExists = false;
   }
-
   if (importMapConfigExists) {
-    const configFileModule = await System.import("config-file");
-    configs.unshift(configFileModule.default);
+    try {
+      const configFileModule = await System.import("config-file");
+      configs.unshift(configFileModule.default);
+    } catch (e) {
+      throw Error("Problem importing config-file: " + e);
+    }
   }
 }
 
