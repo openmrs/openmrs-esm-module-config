@@ -60,15 +60,15 @@ function getConfigForModule(moduleName: string): ConfigObject {
   // where present in the schema.
   const checkForUnknownConfigProperties = (schema, config, keyPath = "") => {
     for (let [key, value] of Object.entries(config)) {
-      keyPath += key;
+      const thisKeyPath = keyPath + key;
       if (!schema.hasOwnProperty(key)) {
         throw Error(
-          `Unknown config key ${keyPath} provided for module ${moduleName}. Please see the config schema for ${moduleName}.`
+          `Unknown config key '${thisKeyPath}' provided for module ${moduleName}. Please see the config schema for ${moduleName}.`
         );
       } else if (typeof value === "object" && value !== null) {
         // Recurse to config[key] and schema[key].
         const schemaPart = schema[key];
-        checkForUnknownConfigProperties(schemaPart, value, keyPath + ".");
+        checkForUnknownConfigProperties(schemaPart, value, thisKeyPath + ".");
       } else {
         if (schema[key].validators) {
           for (let validator of schema[key].validators) {
