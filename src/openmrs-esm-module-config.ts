@@ -6,4 +6,4 @@ export {
 
 export { ModuleNameContext, useConfig } from "./react-hook/react-hook";
 
-export { validator } from "./validators/validators";
+export { validator } from "./validators/validator";

@@ -1,5 +1,5 @@
 import * as Config from "./module-config";
-import { validator } from "../validators/validators";
+import { validator } from "../validators/validator";
 
 describe("getConfig", () => {
   afterEach(() => {
