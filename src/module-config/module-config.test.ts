@@ -1,5 +1,4 @@
 import * as Config from "./module-config";
-import { validator } from "../validators/validator";
 
 describe("getConfig", () => {
   afterEach(() => {
@@ -92,9 +91,7 @@ describe("getConfig", () => {
     Config.defineConfigSchema("foo-module", {
       foo: {
         default: "thing",
-        validators: [
-          validator(val => val.startsWith("thi"), "must start with 'thi'")
-        ]
+        validators: [val => val.startsWith("thi") || "must start with 'thi'"]
       }
     });
     const testConfig = {
@@ -106,6 +103,23 @@ describe("getConfig", () => {
     await expect(Config.getConfig("foo-module")).rejects.toThrow(
       /bar.*foo.*must start with 'thi'.*/
     );
+  });
+
+  it("validators pass", async () => {
+    Config.defineConfigSchema("foo-module", {
+      foo: {
+        default: "thing",
+        validators: [val => val.startsWith("thi") || "must start with 'thi'"]
+      }
+    });
+    const testConfig = {
+      "foo-module": {
+        foo: "this"
+      }
+    };
+    Config.provide(testConfig);
+    const config = await Config.getConfig("foo-module");
+    expect(config.foo).toBe("this");
   });
 });
 
