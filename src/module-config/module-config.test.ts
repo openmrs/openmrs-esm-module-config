@@ -107,6 +107,25 @@ describe("getConfig", () => {
       /bar.*foo.*must start with 'thi'.*/
     );
   });
+
+  it("validators pass", async () => {
+    Config.defineConfigSchema("foo-module", {
+      foo: {
+        default: "thing",
+        validators: [
+          validator(val => val.startsWith("thi"), "must start with 'thi'")
+        ]
+      }
+    });
+    const testConfig = {
+      "foo-module": {
+        foo: "this"
+      }
+    };
+    Config.provide(testConfig);
+    const config = await Config.getConfig("foo-module");
+    expect(config.foo).toBe("this");
+  });
 });
 
 describe("resolveImportMapConfig", () => {
