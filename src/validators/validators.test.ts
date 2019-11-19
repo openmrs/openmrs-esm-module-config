@@ -2,21 +2,20 @@ import { isString, isBoolean } from "./validators";
 
 describe("isString", () => {
   it("accepts strings", () => {
-    // string return value signifies failure, anything else is ok
-    expect(typeof isString("")).not.toBe("string");
+    expect(() => isString("", "")).not.toThrow();
   });
 
   it("rejects non-strings", () => {
-    expect(isString([""])).toMatch(/must be a string/);
+    expect(() => isString("", [""])).toThrow();
   });
 });
 
 describe("isBoolean", () => {
   it("accepts bools", () => {
-    expect(typeof isBoolean(false)).not.toBe("string");
+    expect(() => isBoolean("", false)).not.toThrow();
   });
 
   it("rejects non-bools", () => {
-    expect(isBoolean(1)).toMatch(/must be.*bool/);
+    expect(() => isBoolean("", 1)).toThrow();
   });
 });

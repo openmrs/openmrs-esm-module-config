@@ -67,14 +67,9 @@ function getConfigForModule(moduleName: string): ConfigObject {
         const schemaPart = schema[key];
         checkForUnknownConfigProperties(schemaPart, value, keyPath + ".");
       } else {
-        if (schema[key].validators) {
-          for (let validator of schema[key].validators) {
-            const validatorResponse = validator(value);
-            if (typeof validatorResponse === "string") {
-              throw Error(
-                `Invalid configuration value ${value} for ${keyPath}: ${validatorResponse}`
-              );
-            }
+        if (schema[key]["validators"]) {
+          for (let validator of schema[key]["validators"]) {
+            validator(key, value);
           }
         }
       }
