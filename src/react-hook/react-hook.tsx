@@ -23,5 +23,5 @@ export function useConfig() {
 }
 
 export function clearConfig() {
-  return (config = {});
+  config = {};
 }

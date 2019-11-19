@@ -8,7 +8,7 @@ describe(`useConfig`, () => {
   afterEach(cleanup);
   afterEach(clearConfig);
 
-  xit(`can return config as a react hook`, async () => {
+  it(`can return config as a react hook`, async () => {
     defineConfigSchema("foo-module", {
       thing: {
         default: "The first thing"
