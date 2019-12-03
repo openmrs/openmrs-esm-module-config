@@ -75,7 +75,7 @@ function getConfigForModule(moduleName: string): ConfigObject {
             const validatorResult = validator(value);
             if (typeof validatorResult === "string") {
               throw Error(
-                `Invalid configuration value ${value} for ${keyPath}: ${validatorResult}`
+                `Invalid configuration value ${value} for ${thisKeyPath}: ${validatorResult}`
               );
             }
           }
