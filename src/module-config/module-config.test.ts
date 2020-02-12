@@ -10,7 +10,7 @@ describe("defineConfigSchema", () => {
     Config.clearAll();
   });
 
-  it("yells if an unexpected value is provided as a key", () => {
+  it("logs an error if an unexpected value is provided as a key", () => {
     const schema = {
       bar: true
     };
@@ -20,7 +20,7 @@ describe("defineConfigSchema", () => {
     );
   });
 
-  it("yells if an unexpected nested value is provided as a key", () => {
+  it("logs an error if an unexpected nested value is provided as a key", () => {
     const schema = {
       bar: { baz: "bad bad bad" }
     };
