@@ -14,9 +14,10 @@ export function defineConfigSchema(moduleName, schema) {
 function validateConfigSchema(moduleName, schema, keyPath = "") {
   for (let key of Object.keys(schema)) {
     if (typeof schema[key] !== "object" || schema[key] == null) {
-      throw new Error(
+      console.error(
         `${moduleName} has bad config schema definition for key ${keyPath}${key}. Please alert the maintainer.`
       );
+      return;
     }
     if (!schema[key].hasOwnProperty("default")) {
       // recurse for nested config keys
