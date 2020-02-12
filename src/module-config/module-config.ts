@@ -7,7 +7,22 @@ const configs: object[] = [];
 const schemas = {};
 
 export function defineConfigSchema(moduleName, schema) {
+  validateConfigSchema(moduleName, schema);
   schemas[moduleName] = schema;
+}
+
+function validateConfigSchema(moduleName, schema, keyPath = "") {
+  for (let key of Object.keys(schema)) {
+    if (typeof schema[key] !== "object" || schema[key] == null) {
+      throw new Error(
+        `${moduleName} has bad config schema definition for key ${keyPath}${key}. Please alert the maintainer.`
+      );
+    }
+    if (!schema[key].hasOwnProperty("default")) {
+      // recurse for nested config keys
+      validateConfigSchema(moduleName, schema[key], keyPath + key + ".");
+    }
+  }
 }
 
 export function provide(config) {

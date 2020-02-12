@@ -1,6 +1,30 @@
 import * as Config from "./module-config";
 import { validator } from "../validators/validator";
 
+describe("defineConfigSchema", () => {
+  afterEach(() => {
+    Config.clearAll();
+  });
+
+  it("throws if an unexpected value is provided as a key", () => {
+    const schema = {
+      bar: true
+    };
+    expect(() => Config.defineConfigSchema("foo-module", schema)).toThrowError(
+      /foo-module.*bar/
+    );
+  });
+
+  it("throws if an unexpected nested value is provided as a key", () => {
+    const schema = {
+      bar: { baz: "bad bad bad" }
+    };
+    expect(() => Config.defineConfigSchema("foo-module", schema)).toThrowError(
+      /foo-module.*bar\.baz/
+    );
+  });
+});
+
 describe("getConfig", () => {
   afterEach(() => {
     Config.clearAll();
