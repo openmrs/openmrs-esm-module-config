@@ -146,11 +146,7 @@ function validateArray(arraySchema, value, keyPath) {
     );
   }
   // if there is an array element object schema, verify that elements match it
-  const hasObjectSchema =
-    Object.keys(arraySchema.arrayElements).filter(
-      e => !["default", "validators"].includes(e)
-    ).length > 0;
-  if (hasObjectSchema) {
+  if (hasObjectSchema(arraySchema.arrayElements)) {
     for (let i = 0; i < value.length; i++) {
       const arrayElement = value[i];
       validateConfig(
@@ -187,6 +183,18 @@ const setDefaults = (schema, config) => {
       if (!config.hasOwnProperty(key)) {
         config[key] = schema[key]["default"];
       }
+      // We also check if it is an array with object elements, in which case we recurse
+      if (
+        schema[key].hasOwnProperty("arrayElements") &&
+        hasObjectSchema(schema[key].arrayElements)
+      ) {
+        for (let i = 0; i < config[key].length; i++) {
+          config[key][i] = setDefaults(
+            schema[key].arrayElements,
+            config[key][i]
+          );
+        }
+      }
     } else {
       // Since schema[key] has no property "default", we assume it is a
       // parent config property. We recurse to config[key] and schema[key].
@@ -198,6 +206,14 @@ const setDefaults = (schema, config) => {
   }
   return config;
 };
+
+function hasObjectSchema(arrayElementsSchema) {
+  return (
+    Object.keys(arrayElementsSchema).filter(
+      e => !["default", "validators"].includes(e)
+    ).length > 0
+  );
+}
 
 function isOrdinaryObject(value) {
   return typeof value === "object" && !Array.isArray(value) && value !== null;
