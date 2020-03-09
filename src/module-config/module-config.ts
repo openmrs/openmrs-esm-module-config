@@ -188,12 +188,10 @@ const setDefaults = (schema, config) => {
         schema[key].hasOwnProperty("arrayElements") &&
         hasObjectSchema(schema[key].arrayElements)
       ) {
-        for (let i = 0; i < config[key].length; i++) {
-          config[key][i] = setDefaults(
-            schema[key].arrayElements,
-            config[key][i]
-          );
-        }
+        const configWithDefaults = config[key].map(conf =>
+          setDefaults(schema[key].arrayElements, conf)
+        );
+        config[key] = configWithDefaults;
       }
     } else {
       // Since schema[key] has no property "default", we assume it is a
