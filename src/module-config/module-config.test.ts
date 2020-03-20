@@ -233,7 +233,7 @@ describe("getConfig", () => {
     };
     Config.provide(testConfig);
     await expect(Config.getConfig("foo-module")).rejects.toThrow(
-      /1\.5.*foo-module.*foo.*must be an integer/
+      /1\.5.*foo-module.*foo\[1\].*must be an integer/
     );
   });
 
@@ -283,7 +283,7 @@ describe("getConfig", () => {
     );
   });
 
-  it("supports validation of nested array element objects", async () => {
+  it("supports validation of nested array element objects elements", async () => {
     Config.defineConfigSchema("foo-module", {
       foo: {
         default: [{ a: { b: 1 } }],
@@ -306,34 +306,53 @@ describe("getConfig", () => {
       /value.*foo\[0\]\.a\.b.*must be an integer/
     );
   });
-});
-
-it("fills array element object elements with defaults", async () => {
-  Config.defineConfigSchema("foo-module", {
-    foo: {
-      default: [{ a: { b: "arrayDefaultB", filler: "arrayDefault" } }],
-      arrayElements: {
-        a: {
-          b: { validators: [] },
-          filler: { default: "defaultFiller", validators: [isString] }
+  it("supports validation of array element objects", async () => {
+    Config.defineConfigSchema("foo-module", {
+      foo: {
+        default: [{ a: { b: 1 }, c: 2 }],
+        arrayElements: {
+          validators: [validator(o => o.a.b + 1 == o.c, "c must equal a.b + 1")]
         }
       }
-    }
+    });
+    const testConfig = {
+      "foo-module": {
+        foo: [{ a: { b: 4 }, c: 5 }, { a: { b: 1 }, c: 3 }]
+      }
+    };
+    Config.provide(testConfig);
+    await expect(Config.getConfig("foo-module")).rejects.toThrow(
+      /value.*{\"a\":{\"b\":1},\"c\":3}.*foo\[1\].*c must equal a\.b \+ 1/
+    );
   });
-  const testConfig = {
-    "foo-module": {
-      foo: [
-        { a: { b: "customB", filler: "customFiller" } },
-        { a: { b: "anotherB" } }
-      ]
-    }
-  };
-  Config.provide(testConfig);
-  const config = await Config.getConfig("foo-module");
-  expect(config.foo).toStrictEqual([
-    { a: { b: "customB", filler: "customFiller" } },
-    { a: { b: "anotherB", filler: "defaultFiller" } }
-  ]);
+
+  it("fills array element object elements with defaults", async () => {
+    Config.defineConfigSchema("foo-module", {
+      foo: {
+        default: [{ a: { b: "arrayDefaultB", filler: "arrayDefault" } }],
+        arrayElements: {
+          a: {
+            b: { validators: [] },
+            filler: { default: "defaultFiller", validators: [isString] }
+          }
+        }
+      }
+    });
+    const testConfig = {
+      "foo-module": {
+        foo: [
+          { a: { b: "customB", filler: "customFiller" } },
+          { a: { b: "anotherB" } }
+        ]
+      }
+    };
+    Config.provide(testConfig);
+    const config = await Config.getConfig("foo-module");
+    expect(config.foo).toStrictEqual([
+      { a: { b: "customB", filler: "customFiller" } },
+      { a: { b: "anotherB", filler: "defaultFiller" } }
+    ]);
+  });
 });
 
 describe("resolveImportMapConfig", () => {
