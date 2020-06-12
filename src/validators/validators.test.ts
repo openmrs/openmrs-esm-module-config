@@ -34,4 +34,10 @@ describe("isUuid", () => {
       "must be a valid UUID"
     );
   });
+
+  it("rejects a bad CIEL External ID", () => {
+    expect(isUuid("123118AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")).toMatch(
+      "must be a valid UUID"
+    );
+  });
 });
