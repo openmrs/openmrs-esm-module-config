@@ -21,8 +21,8 @@ describe("isBoolean", () => {
 });
 
 describe("isUuid", () => {
-  it("accepts a valid UUID with no dashes", () => {
-    expect(isUuid("5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")).toBeUndefined();
+  it("accepts a CIEL External ID", () => {
+    expect(isUuid("123118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")).toBeUndefined();
   });
 
   it("accepts a valid UUID with dashes", () => {
