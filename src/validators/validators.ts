@@ -10,4 +10,9 @@ export const isBoolean = validator(
   "must be a boolean"
 );
 
+export const isUuid = validator(
+  val => val.replace(/-/g, "").match(/^[0-9a-f]{32}/i),
+  "must be a valid UUID"
+);
+
 export const validators = { isString, isBoolean };
