@@ -9,6 +9,7 @@
     "start-https": "webpack-dev-server --https",
     "test": "BABEL_ENV=test jest",
     "lint": "eslint src --ext ts",
+    "typedoc": "typedoc src/openmrs-esm-module-config.ts",
     "typescript": "tsc",
     "prettier": "prettier 'src/**/*' --write",
     "build": "webpack --mode=production",
@@ -23,7 +24,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently npm:lint npm:test npm:typescript"
+      "pre-commit": "pretty-quick --staged && concurrently npm:lint npm:test npm:typescript npm:typedoc && git add docs"
     }
   },
   "repository": {
