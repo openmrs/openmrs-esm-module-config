@@ -1,4 +1,5 @@
 import * as R from "ramda";
+import { CommonConfig } from "../common-config/schema";
 
 // The configurations that have been provided
 const configs: Config[] = [];
@@ -42,9 +43,21 @@ export function processConfig(
   return config;
 }
 
+/**
+ * Return an unvalidated tree of all config elements, including defaults
+ */
 export async function getDevtoolsConfig(): Promise<object> {
   await loadConfigs();
   return getAllConfigsWithoutValidating();
+}
+
+/**
+ * Return the config associated with the top-level key "common"
+ */
+export async function getCommonConfig(): Promise<CommonConfig> {
+  await loadConfigs();
+  const config = getConfigForModule("common") as CommonConfig;
+  return config;
 }
 
 /**

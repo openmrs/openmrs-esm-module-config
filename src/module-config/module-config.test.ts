@@ -1,6 +1,7 @@
 import * as Config from "./module-config";
 import { validator } from "../validators/validator";
 import { validators, isString } from "../validators/validators";
+import { defineCommonSchema } from "../common-config/define-common-schema";
 
 describe("defineConfigSchema", () => {
   beforeEach(() => {
@@ -423,6 +424,14 @@ describe("getConfig", () => {
       { a: { b: "customB", filler: "customFiller" } },
       { a: { b: "anotherB", filler: "defaultFiller" } }
     ]);
+  });
+});
+
+describe("getCommonConfig", () => {
+  it("returns some of the expected values", async () => {
+    defineCommonSchema();
+    const config = await Config.getCommonConfig();
+    expect(config.concepts).toBeDefined();
   });
 });
 

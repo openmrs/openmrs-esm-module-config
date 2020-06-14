@@ -13,7 +13,7 @@ export function useConfig() {
     );
   }
   if (error) {
-    // Suspense will just keep calling useConfig if the thrown promise rejects.
+    // Suspense will just keep calling the hook if the thrown promise rejects.
     // So we check ahead of time and avoid creating a new promise.
     throw error;
   }

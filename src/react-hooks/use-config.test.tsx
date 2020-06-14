@@ -1,11 +1,10 @@
 import React from "react";
 import { clearAll, defineConfigSchema } from "../module-config/module-config";
 import { render, wait, cleanup } from "@testing-library/react";
-import { ModuleNameContext, useConfig, clearConfig } from "./react-hook";
+import { ModuleNameContext, useConfig, clearConfig } from "./use-config";
 
 describe(`useConfig`, () => {
   afterEach(clearAll);
-  afterEach(cleanup);
   afterEach(clearConfig);
 
   it(`can return config as a react hook`, async () => {
