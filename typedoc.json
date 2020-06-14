@@ -1,0 +1,6 @@
+{
+  "mode": "library",
+  "out": "docs",
+  "excludeNotExported": true,
+  "stripInternal": true
+}

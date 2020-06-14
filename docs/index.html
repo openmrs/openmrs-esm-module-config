@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>@openmrs/esm-module-config</title>
-	<meta name="description" content="Documentation for @openmrs/esm-module-config">
+	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -40,8 +40,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -82,14 +80,14 @@
 				<p>OpenMRS frontend configuration files are JSON files containing module names as top-level elements. All configuration elements are optional. The available configuration elements for each module should be documented in the module&#39;s wiki page.</p>
 				<p>Here&#39;s an example!</p>
 				<pre><code class="language-json">{
-  <span class="hljs-attr">&quot;@openmrs/esm-login&quot;</span>: {
-    <span class="hljs-attr">&quot;logo&quot;</span>: {
-      <span class="hljs-attr">&quot;src&quot;</span>: <span class="hljs-string">&quot;https://pbs.twimg.com/media/C1w_czvWgAAWONL.jpg&quot;</span>
+  <span class="hljs-attr">"@openmrs/esm-login"</span>: {
+    <span class="hljs-attr">"logo"</span>: {
+      <span class="hljs-attr">"src"</span>: <span class="hljs-string">"https://pbs.twimg.com/media/C1w_czvWgAAWONL.jpg"</span>
     }
   },
-  <span class="hljs-attr">&quot;@openmrs/esm-home&quot;</span>: {
-    <span class="hljs-attr">&quot;search&quot;</span>: {
-      <span class="hljs-attr">&quot;numResultsPerPage&quot;</span>: <span class="hljs-number">20</span>
+  <span class="hljs-attr">"@openmrs/esm-home"</span>: {
+    <span class="hljs-attr">"search"</span>: {
+      <span class="hljs-attr">"numResultsPerPage"</span>: <span class="hljs-number">20</span>
     }
   }
 }</code></pre>
@@ -107,8 +105,8 @@
 					microfrontends from your OpenMRS server, you can simply add your config
 				file to your server&#39;s <code>frontend/</code> directory. Your import map will then look like</p>
 				<pre><code class="language-json">{
-  <span class="hljs-attr">&quot;imports&quot;</span>: {
-    <span class="hljs-attr">&quot;config-file&quot;</span>: <span class="hljs-string">&quot;/openmrs/frontend/config.json&quot;</span>
+  <span class="hljs-attr">"imports"</span>: {
+    <span class="hljs-attr">"config-file"</span>: <span class="hljs-string">"/openmrs/frontend/config.json"</span>
   }
 }</code></pre>
 				<a href="#the-flexible-way" id="the-flexible-way" style="color: inherit; text-decoration: none;">
@@ -121,10 +119,10 @@
 					files to your root override module, import them, and provide them to
 				esm-module-config. All this must happen before you register your applications.</p>
 				<p>Example code:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> { provide } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@openmrs/esm-module-config&quot;</span>;
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { provide } <span class="hljs-keyword">from</span> <span class="hljs-string">"@openmrs/esm-module-config"</span>;
 
-<span class="hljs-keyword">import</span> pihConfig <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./pih-config.json&quot;</span>;
-<span class="hljs-keyword">import</span> pihMexicoConfig <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./pih-mexico-config.json&quot;</span>;
+<span class="hljs-keyword">import</span> pihConfig <span class="hljs-keyword">from</span> <span class="hljs-string">"./pih-config.json"</span>;
+<span class="hljs-keyword">import</span> pihMexicoConfig <span class="hljs-keyword">from</span> <span class="hljs-string">"./pih-mexico-config.json"</span>;
 
 provide(pihConfig);
 provide(pihMexicoConfig);</code></pre>
@@ -173,33 +171,33 @@ provide(pihMexicoConfig);</code></pre>
 					<h3>Defining a schema</h3>
 				</a>
 				<p>We&#39;ll start with just that first nested config element from above, <code>hologram.color</code>. We must provide defaults for all of the values—in OpenMRS Microfrontends, all configuration is optional.</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> { defineConfigSchema, validators, validator } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@openmrs/esm-module-config&quot;</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { defineConfigSchema, validators, validator } <span class="hljs-keyword">from</span> <span class="hljs-string">"@openmrs/esm-module-config"</span>
 
-defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&quot;</span>, {
+defineConfigSchema(<span class="hljs-string">"@openmrs/esm-hologram-doctor"</span>, {
   <span class="hljs-attr">hologram</span>: {
     <span class="hljs-attr">color</span>: {
       <span class="hljs-attr">default</span>: <span class="hljs-literal">false</span>,
       <span class="hljs-attr">validators</span>: [validators.isBoolean],
-      <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;Whether the cologram supports color display.&quot;</span>
+      <span class="hljs-attr">description</span>: <span class="hljs-string">"Whether the cologram supports color display."</span>
     }
   }
 }</code></pre>
 				<p>Note that each configuration element should have an object for a value, and
 				that this object must define the default for that element. Do not do this:</p>
 				<pre><code class="language-js">❌ <span class="hljs-comment">// This is wrong!</span>
-❌ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&quot;</span>,
+❌ defineConfigSchema(<span class="hljs-string">"@openmrs/esm-hologram-doctor"</span>,
 ❌  hologram: {
-❌   salutation: <span class="hljs-string">&quot;Some friendly default salutation! ? this is wrong!&quot;</span>
+❌   salutation: <span class="hljs-string">"Some friendly default salutation! ? this is wrong!"</span>
 ❌ })</code></pre>
 				<p>The following names are reserved and cannot be used as config keys:
 					<code>default</code>, <code>validators</code>, <code>description</code>, and <code>arrayElements</code>. Doing so
 				will result in undefined behavior. Do not do this:</p>
-				<pre><code class="language-js">❌ <span class="hljs-comment">// Don&#x27;t do this!</span>
-❌ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&quot;</span>,
+				<pre><code class="language-js">❌ <span class="hljs-comment">// Don't do this!</span>
+❌ defineConfigSchema(<span class="hljs-string">"@openmrs/esm-hologram-doctor"</span>,
 ❌  hologram: {
 ❌    salutation: {
 ❌      <span class="hljs-keyword">default</span>: {
-❌        <span class="hljs-keyword">default</span>: <span class="hljs-string">&quot;Greetings ? this is bad don&#x27;t do it&quot;</span>
+❌        <span class="hljs-keyword">default</span>: <span class="hljs-string">"Greetings ? this is bad don't do it"</span>
 ❌ }}})</code></pre>
 				<a href="#validators" id="validators" style="color: inherit; text-decoration: none;">
 					<h4>Validators</h4>
@@ -211,10 +209,10 @@ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&
 				on&#39;t work.</p>
 				<pre><code class="language-js">robot: {
   <span class="hljs-attr">name</span>: {
-    <span class="hljs-attr">default</span>: <span class="hljs-string">&quot;R2D2&quot;</span>,
+    <span class="hljs-attr">default</span>: <span class="hljs-string">"R2D2"</span>,
     <span class="hljs-attr">validators</span>: [
       validators.isString,
-      validator(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-regexp">/\d/</span>.test(n), <span class="hljs-string">&quot;Robots must have numbers in their names&quot;</span>)
+      validator(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-regexp">/\d/</span>.test(n), <span class="hljs-string">"Robots must have numbers in their names"</span>)
     ]
   }
 }</code></pre>
@@ -241,7 +239,7 @@ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&
 				<pre><code class="language-js">virtualProvider: {
   <span class="hljs-attr">name</span>: {
     <span class="hljs-attr">given</span>: {
-      <span class="hljs-attr">default</span>: [<span class="hljs-string">&quot;Obi&quot;</span>, <span class="hljs-string">&quot;Wan&quot;</span>]
+      <span class="hljs-attr">default</span>: [<span class="hljs-string">"Obi"</span>, <span class="hljs-string">"Wan"</span>]
       <span class="hljs-attr">arrayElements</span>: {
         <span class="hljs-attr">validators</span>: [validators.isString]
       }
@@ -251,8 +249,8 @@ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&
 				<p>Here is an example of a schema that expects an array of objects structured in a particular way.</p>
 				<pre><code class="language-js">robots: {
   <span class="hljs-attr">default</span>: [
-    { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;R2-D2&quot;</span>, <span class="hljs-attr">homeworld</span>: <span class="hljs-string">&quot;Naboo&quot;</span> },
-    { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;C-3PO&quot;</span>, <span class="hljs-attr">homeworld</span>: <span class="hljs-string">&quot;Tatooine&quot;</span> }
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">"R2-D2"</span>, <span class="hljs-attr">homeworld</span>: <span class="hljs-string">"Naboo"</span> },
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">"C-3PO"</span>, <span class="hljs-attr">homeworld</span>: <span class="hljs-string">"Tatooine"</span> }
   ],
   <span class="hljs-attr">arrayElements</span>: {
     <span class="hljs-attr">name</span>: { <span class="hljs-attr">validators</span>: [robotNameValidator] },
@@ -272,11 +270,11 @@ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&
 				</a>
 				<p>The config is fetched asynchronously using <code>getConfig(moduleName)</code>. Continuing the
 				above example, we would have something like</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> { getConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@openmrs/esm-module-config&quot;</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { getConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">"@openmrs/esm-module-config"</span>
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doctorGreeting</span>(<span class="hljs-params"></span>) </span>{     
-  <span class="hljs-keyword">const</span> config = <span class="hljs-keyword">await</span> getConfig(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&quot;</span>)
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, my name is Dr. &quot;</span> + config.virtualProvider.name.family
+  <span class="hljs-keyword">const</span> config = <span class="hljs-keyword">await</span> getConfig(<span class="hljs-string">"@openmrs/esm-hologram-doctor"</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, my name is Dr. "</span> + config.virtualProvider.name.family
 }</code></pre>
 				<p>The content of config will be pulled from the config files, falling back to
 				the defaults for configuration elements for which no values have been provided.</p>
@@ -288,15 +286,15 @@ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&
 					<a href="https://github.com/openmrs/openmrs-react-root-decorator">openmrs react root decorator</a>
 				is used to look up the configuration elsewhere in the application.</p>
 				<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> openmrsRootDecorator({
-  <span class="hljs-attr">featureName</span>: <span class="hljs-string">&quot;hologram doctor&quot;</span>,
-  <span class="hljs-attr">moduleName</span>: <span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&quot;</span>
+  <span class="hljs-attr">featureName</span>: <span class="hljs-string">"hologram doctor"</span>,
+  <span class="hljs-attr">moduleName</span>: <span class="hljs-string">"@openmrs/esm-hologram-doctor"</span>
 })(Root)</code></pre>
 				<p>You can then get the config tree as an object using the <code>useConfig</code> React hook.</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> { useConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@openmrs/esm-module-config&quot;</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { useConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">"@openmrs/esm-module-config"</span>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">DoctorGreeting</span>(<span class="hljs-params"></span>) </span>{     
   <span class="hljs-keyword">const</span> config = useConfig()
-  <span class="hljs-keyword">const</span> greeting = <span class="hljs-string">&quot;Hello, my name is Dr. &quot;</span> + config.virtualProvider.name.family
+  <span class="hljs-keyword">const</span> greeting = <span class="hljs-string">"Hello, my name is Dr. "</span> + config.virtualProvider.name.family
   <span class="hljs-keyword">return</span> (
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{ greeting }<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
@@ -314,7 +312,7 @@ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&
 					<a href="https://github.com/openmrs/openmrs-rfc-frontend/blob/master/text/0020-contributing-guidelines.md#contributing-guidelines">OpenMRS Microfrontends RFC-20</a>
 				for guidelines about contributing.</p>
 				<p><a href="https://wiki.openmrs.org/display/projects/Setup+local+development+environment+for+OpenMRS+SPA">Setup local development environment for OpenMRS SPA</a>.</p>
-				<p>Maintainer: Brandon Istenes (<a href="mailto:&#x62;&#105;&#x73;&#x74;&#101;&#110;&#101;&#115;&#x40;&#112;&#x69;&#x68;&#x2e;&#x6f;&#x72;&#x67;">&#x62;&#105;&#x73;&#x74;&#101;&#110;&#101;&#115;&#x40;&#112;&#x69;&#x68;&#x2e;&#x6f;&#x72;&#x67;</a>)</p>
+				<p>Maintainer: Brandon Istenes (<a href="mailto:bistenes@pih.org">bistenes@pih.org</a>)</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -323,31 +321,37 @@ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_module_config_module_config_.html">&quot;module-<wbr>config/module-<wbr>config&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_module_config_module_config_test_.html">&quot;module-<wbr>config/module-<wbr>config.test&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_openmrs_esm_module_config_.html">&quot;openmrs-<wbr>esm-<wbr>module-<wbr>config&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_react_hook_react_hook_.html">&quot;react-<wbr>hook/react-<wbr>hook&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_react_hook_react_hook_test_.html">&quot;react-<wbr>hook/react-<wbr>hook.test&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_validators_validator_.html">&quot;validators/validator&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_validators_validators_.html">&quot;validators/validators&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#modulenamecontext" class="tsd-kind-icon">Module<wbr>Name<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#defineconfigschema" class="tsd-kind-icon">define<wbr>Config<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getdevtoolsconfig" class="tsd-kind-icon">get<wbr>Devtools<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#provide" class="tsd-kind-icon">provide</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#useconfig" class="tsd-kind-icon">use<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#validateconfig" class="tsd-kind-icon">validate<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#validator" class="tsd-kind-icon">validator</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#validators" class="tsd-kind-icon">validators</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -358,13 +362,57 @@ defineConfigSchema(<span class="hljs-string">&quot;@openmrs/esm-hologram-doctor&
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
 				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
