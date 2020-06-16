@@ -300,31 +300,8 @@ This hasn't been implemented yet, but we would like to implement it! See "Contri
 
 <!-- API -->
 
-### Variables
-
-- [ModuleNameContext](README.md#const-modulenamecontext)
-
-### Functions
-
-- [defineConfigSchema](README.md#defineconfigschema)
-- [getConfig](README.md#getconfig)
-- [getDevtoolsConfig](README.md#getdevtoolsconfig)
-- [processConfig](README.md#processconfig)
-- [provide](README.md#provide)
-- [useConfig](README.md#useconfig)
-- [validator](README.md#validator)
-
-### Object literals
-
-- [validators](README.md#const-validators)
-
-## Variables
-
-### `Const` ModuleNameContext
-
-• **ModuleNameContext**: _Context‹null | string›_ = React.createContext<string | null>(null)
-
-_Defined in [react-hook/react-hook.tsx:4](https://github.com/openmrs/esm-module-config/blob/3f0e65e/src/react-hook/react-hook.tsx#L4)_
+asoifehosihfeesoafjio
+penmrs/esm-module-config/blob/3f0e65e/src/react-hook/react-hook.tsx#L4)\_
 
 ## Functions
 
