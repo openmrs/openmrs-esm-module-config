@@ -322,7 +322,7 @@ This hasn't been implemented yet, but we would like to implement it! See "Contri
 
 • **ModuleNameContext**: *Context‹null | string›* = React.createContext<string | null>(null)
 
-*Defined in [react-hook/react-hook.tsx:4](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/react-hook/react-hook.tsx#L4)*
+*Defined in [react-hook/react-hook.tsx:4](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/react-hook/react-hook.tsx#L4)*
 
 ## Functions
 
@@ -330,7 +330,7 @@ This hasn't been implemented yet, but we would like to implement it! See "Contri
 
 ▸ **defineConfigSchema**(`moduleName`: string, `schema`: ConfigSchema): *void*
 
-*Defined in [module-config/module-config.ts:13](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L13)*
+*Defined in [module-config/module-config.ts:13](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/module-config/module-config.ts#L13)*
 
 API
 
@@ -349,7 +349,7 @@ ___
 
 ▸ **getConfig**(`moduleName`: string): *Promise‹ConfigObject›*
 
-*Defined in [module-config/module-config.ts:22](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L22)*
+*Defined in [module-config/module-config.ts:22](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/module-config/module-config.ts#L22)*
 
 **Parameters:**
 
@@ -365,7 +365,7 @@ ___
 
 ▸ **getDevtoolsConfig**(): *Promise‹object›*
 
-*Defined in [module-config/module-config.ts:45](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L45)*
+*Defined in [module-config/module-config.ts:45](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/module-config/module-config.ts#L45)*
 
 **Returns:** *Promise‹object›*
 
@@ -375,7 +375,7 @@ ___
 
 ▸ **processConfig**(`schema`: ConfigSchema, `providedConfig`: ConfigObject, `keyPathContext`: string): *any*
 
-*Defined in [module-config/module-config.ts:35](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L35)*
+*Defined in [module-config/module-config.ts:35](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/module-config/module-config.ts#L35)*
 
 Validate and interpolate defaults for `providedConfig` according to `schema`
 
@@ -395,7 +395,7 @@ ___
 
 ▸ **provide**(`config`: Config): *void*
 
-*Defined in [module-config/module-config.ts:18](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L18)*
+*Defined in [module-config/module-config.ts:18](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/module-config/module-config.ts#L18)*
 
 **Parameters:**
 
@@ -411,7 +411,7 @@ ___
 
 ▸ **useConfig**(): *any*
 
-*Defined in [react-hook/react-hook.tsx:8](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/react-hook/react-hook.tsx#L8)*
+*Defined in [react-hook/react-hook.tsx:8](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/react-hook/react-hook.tsx#L8)*
 
 **Returns:** *any*
 
@@ -421,7 +421,7 @@ ___
 
 ▸ **validator**(`validationFunction`: ValidatorFunction, `message`: String): *Validator*
 
-*Defined in [validators/validator.ts:1](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/validators/validator.ts#L1)*
+*Defined in [validators/validator.ts:1](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/validators/validator.ts#L1)*
 
 **Parameters:**
 
@@ -438,13 +438,13 @@ Name | Type |
 
 ### ▪ **validators**: *object*
 
-*Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/validators/validators.ts#L21)*
+*Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/validators/validators.ts#L21)*
 
 ###  isBoolean
 
 • **isBoolean**: *function*
 
-*Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/validators/validators.ts#L21)*
+*Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/validators/validators.ts#L21)*
 
 #### Type declaration:
 
@@ -460,7 +460,7 @@ Name | Type |
 
 • **isString**: *function*
 
-*Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/validators/validators.ts#L21)*
+*Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/ebb15cf/src/validators/validators.ts#L21)*
 
 #### Type declaration:
 
@@ -471,6 +471,178 @@ Name | Type |
 Name | Type |
 ------ | ------ |
 `value` | any |
+
+- [ModuleNameContext](README.md#const-modulenamecontext)
+
+### Functions
+
+- [defineConfigSchema](README.md#defineconfigschema)
+- [getConfig](README.md#getconfig)
+- [getDevtoolsConfig](README.md#getdevtoolsconfig)
+- [processConfig](README.md#processconfig)
+- [provide](README.md#provide)
+- [useConfig](README.md#useconfig)
+- [validator](README.md#validator)
+
+### Object literals
+
+- [validators](README.md#const-validators)
+
+## Variables
+
+### `Const` ModuleNameContext
+
+• **ModuleNameContext**: _Context‹null | string›_ = React.createContext<string | null>(null)
+
+_Defined in [react-hook/react-hook.tsx:4](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/react-hook/react-hook.tsx#L4)_
+
+## Functions
+
+### defineConfigSchema
+
+▸ **defineConfigSchema**(`moduleName`: string, `schema`: ConfigSchema): _void_
+
+_Defined in [module-config/module-config.ts:13](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L13)_
+
+API
+
+**Parameters:**
+
+| Name         | Type         |
+| ------------ | ------------ |
+| `moduleName` | string       |
+| `schema`     | ConfigSchema |
+
+**Returns:** _void_
+
+---
+
+### getConfig
+
+▸ **getConfig**(`moduleName`: string): _Promise‹ConfigObject›_
+
+_Defined in [module-config/module-config.ts:22](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L22)_
+
+**Parameters:**
+
+| Name         | Type   |
+| ------------ | ------ |
+| `moduleName` | string |
+
+**Returns:** _Promise‹ConfigObject›_
+
+---
+
+### getDevtoolsConfig
+
+▸ **getDevtoolsConfig**(): _Promise‹object›_
+
+_Defined in [module-config/module-config.ts:45](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L45)_
+
+**Returns:** _Promise‹object›_
+
+---
+
+### processConfig
+
+▸ **processConfig**(`schema`: ConfigSchema, `providedConfig`: ConfigObject, `keyPathContext`: string): _any_
+
+_Defined in [module-config/module-config.ts:35](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L35)_
+
+Validate and interpolate defaults for `providedConfig` according to `schema`
+
+**Parameters:**
+
+| Name             | Type         | Description                                                                                |
+| ---------------- | ------------ | ------------------------------------------------------------------------------------------ |
+| `schema`         | ConfigSchema | a configuration schema                                                                     |
+| `providedConfig` | ConfigObject | an object of config values (without the top-level module name)                             |
+| `keyPathContext` | string       | a dot-deparated string which helps the user figure out where the provided config came from |
+
+**Returns:** _any_
+
+---
+
+### provide
+
+▸ **provide**(`config`: Config): _void_
+
+_Defined in [module-config/module-config.ts:18](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/module-config/module-config.ts#L18)_
+
+**Parameters:**
+
+| Name     | Type   |
+| -------- | ------ |
+| `config` | Config |
+
+**Returns:** _void_
+
+---
+
+### useConfig
+
+▸ **useConfig**(): _any_
+
+_Defined in [react-hook/react-hook.tsx:8](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/react-hook/react-hook.tsx#L8)_
+
+**Returns:** _any_
+
+---
+
+### validator
+
+▸ **validator**(`validationFunction`: ValidatorFunction, `message`: String): _Validator_
+
+_Defined in [validators/validator.ts:1](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/validators/validator.ts#L1)_
+
+**Parameters:**
+
+| Name                 | Type              |
+| -------------------- | ----------------- |
+| `validationFunction` | ValidatorFunction |
+| `message`            | String            |
+
+**Returns:** _Validator_
+
+## Object literals
+
+### `Const` validators
+
+### ▪ **validators**: _object_
+
+_Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/validators/validators.ts#L21)_
+
+### isBoolean
+
+• **isBoolean**: _function_
+
+_Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/validators/validators.ts#L21)_
+
+#### Type declaration:
+
+▸ (`value`: any): _void | String_
+
+**Parameters:**
+
+| Name    | Type |
+| ------- | ---- |
+| `value` | any  |
+
+### isString
+
+• **isString**: _function_
+
+_Defined in [validators/validators.ts:21](https://github.com/openmrs/esm-module-config/blob/b99bbe2/src/validators/validators.ts#L21)_
+
+#### Type declaration:
+
+▸ (`value`: any): _void | String_
+
+**Parameters:**
+
+| Name    | Type |
+| ------- | ---- |
+| `value` | any  |
 
 - [ModuleNameContext](README.md#const-modulenamecontext)
 
