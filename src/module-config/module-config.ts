@@ -66,22 +66,33 @@ function validateConfigSchema(
   schema: ConfigSchema,
   keyPath = ""
 ) {
+  const updateMessage = `Please verify that you are running the latest version and, if so, alert the maintainer.`;
   for (let key of Object.keys(schema)) {
+    const thisKeyPath = keyPath + (keyPath && ".") + key;
     if (!["description", "validators"].includes(key)) {
       if (!isOrdinaryObject(schema[key])) {
         console.error(
-          `${moduleName} has bad config schema definition for key ${keyPath}${key}. ` +
-            `Please verify that you are running the latest version and, if so, ` +
-            `alert the maintainer.`
+          `${moduleName} has bad config schema definition for key '${thisKeyPath}'. ${updateMessage}`
         );
-        return;
+        continue;
       }
       if (!schema[key].hasOwnProperty("default")) {
         // recurse for nested config keys
-        validateConfigSchema(moduleName, schema[key], keyPath + key + ".");
+        validateConfigSchema(moduleName, schema[key], thisKeyPath);
+      }
+    } else if (key === "validators") {
+      for (let validator of schema[key]) {
+        if (typeof validator !== "function") {
+          console.error(
+            `${moduleName} has invalid validator for key '${keyPath}' ${updateMessage}.` +
+              `\n\nIf you're the maintainer: validators must be functions that return either ` +
+              `undefined or an error string. Received ${validator}.`
+          );
+        }
       }
     }
   }
+  //TODO: Validate the validators
 }
 
 // Get config file from import map and prepend it to `configs`

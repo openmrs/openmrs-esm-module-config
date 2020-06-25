@@ -49,6 +49,18 @@ describe("defineConfigSchema", () => {
     Config.defineConfigSchema("foo-module", schema);
     expect(console.error).not.toHaveBeenCalled();
   });
+
+  it("logs an error if a non-function validator is provided", () => {
+    const schema = {
+      bar: { validators: [false] }
+    };
+    Config.defineConfigSchema("foo-module", schema);
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringMatching(
+        /foo-module.*has invalid validator.*bar[\s\S]*false.*/i
+      )
+    );
+  });
 });
 
 describe("getConfig", () => {
