@@ -92,7 +92,6 @@ function validateConfigSchema(
       }
     }
   }
-  //TODO: Validate the validators
 }
 
 // Get config file from import map and prepend it to `configs`
