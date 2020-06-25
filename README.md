@@ -354,7 +354,7 @@ This hasn't been implemented yet, but we would like to implement it! See "Contri
 
 • **ModuleNameContext**: *Context‹null | string›* = React.createContext<string | null>(null)
 
-*Defined in [react-hook/react-hook.tsx:4](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/react-hook/react-hook.tsx#L4)*
+*Defined in [react-hook/react-hook.tsx:4](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/react-hook/react-hook.tsx#L4)*
 
 ## Functions
 
@@ -362,7 +362,7 @@ This hasn't been implemented yet, but we would like to implement it! See "Contri
 
 ▸ **defineConfigSchema**(`moduleName`: string, `schema`: ConfigSchema): *void*
 
-*Defined in [module-config/module-config.ts:13](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/module-config/module-config.ts#L13)*
+*Defined in [module-config/module-config.ts:13](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/module-config/module-config.ts#L13)*
 
 **Parameters:**
 
@@ -379,7 +379,7 @@ ___
 
 ▸ **getConfig**(`moduleName`: string): *Promise‹ConfigObject›*
 
-*Defined in [module-config/module-config.ts:22](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/module-config/module-config.ts#L22)*
+*Defined in [module-config/module-config.ts:22](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/module-config/module-config.ts#L22)*
 
 **Parameters:**
 
@@ -395,7 +395,7 @@ ___
 
 ▸ **getDevtoolsConfig**(): *Promise‹object›*
 
-*Defined in [module-config/module-config.ts:45](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/module-config/module-config.ts#L45)*
+*Defined in [module-config/module-config.ts:45](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/module-config/module-config.ts#L45)*
 
 **Returns:** *Promise‹object›*
 
@@ -405,7 +405,7 @@ ___
 
 ▸ **processConfig**(`schema`: ConfigSchema, `providedConfig`: ConfigObject, `keyPathContext`: string): *any*
 
-*Defined in [module-config/module-config.ts:35](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/module-config/module-config.ts#L35)*
+*Defined in [module-config/module-config.ts:35](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/module-config/module-config.ts#L35)*
 
 Validate and interpolate defaults for `providedConfig` according to `schema`
 
@@ -425,7 +425,7 @@ ___
 
 ▸ **provide**(`config`: Config): *void*
 
-*Defined in [module-config/module-config.ts:18](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/module-config/module-config.ts#L18)*
+*Defined in [module-config/module-config.ts:18](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/module-config/module-config.ts#L18)*
 
 **Parameters:**
 
@@ -441,7 +441,7 @@ ___
 
 ▸ **useConfig**(): *any*
 
-*Defined in [react-hook/react-hook.tsx:8](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/react-hook/react-hook.tsx#L8)*
+*Defined in [react-hook/react-hook.tsx:8](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/react-hook/react-hook.tsx#L8)*
 
 **Returns:** *any*
 
@@ -451,7 +451,7 @@ ___
 
 ▸ **validator**(`validationFunction`: ValidatorFunction, `message`: String): *Validator*
 
-*Defined in [validators/validator.ts:1](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/validators/validator.ts#L1)*
+*Defined in [validators/validator.ts:1](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/validators/validator.ts#L1)*
 
 **Parameters:**
 
@@ -468,13 +468,13 @@ Name | Type |
 
 ### ▪ **validators**: *object*
 
-*Defined in [validators/validators.ts:21](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/validators/validators.ts#L21)*
+*Defined in [validators/validators.ts:21](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/validators/validators.ts#L21)*
 
 ###  isBoolean
 
 • **isBoolean**: *function*
 
-*Defined in [validators/validators.ts:21](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/validators/validators.ts#L21)*
+*Defined in [validators/validators.ts:21](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/validators/validators.ts#L21)*
 
 #### Type declaration:
 
@@ -490,7 +490,7 @@ Name | Type |
 
 • **isString**: *function*
 
-*Defined in [validators/validators.ts:21](https://github.com/openmrs/openmrs-esm-module-config/blob/9766947/src/validators/validators.ts#L21)*
+*Defined in [validators/validators.ts:21](https://github.com/openmrs/openmrs-esm-module-config/blob/9b568ff/src/validators/validators.ts#L21)*
 
 #### Type declaration:
 

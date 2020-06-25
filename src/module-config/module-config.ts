@@ -145,21 +145,24 @@ const validateConfig = (
   config: ConfigObject,
   keyPath: string = ""
 ) => {
-  if (schema.hasOwnProperty("dictionaryElements")) {
-    validateDictionary(schema, config, keyPath);
-    return;
-  }
   for (let [key, value] of Object.entries(config)) {
     const thisKeyPath = keyPath + "." + key;
     if (!schema.hasOwnProperty(key)) {
       console.error(`Unknown config key '${thisKeyPath}' provided. Ignoring.`);
-    } else if (isOrdinaryObject(value)) {
-      // nested config; recurse
-      const schemaPart = schema[key];
-      validateConfig(schemaPart, value, thisKeyPath);
+      continue;
+    }
+    runValidators(thisKeyPath, schema[key].validators, value);
+    if (isOrdinaryObject(value)) {
+      // structurally validate only if there's dictionaryElements specified
+      // or there's a `default` value, which indicates a freeform object
+      if (schema[key].dictionaryElements) {
+        validateDictionary(schema[key], value, thisKeyPath);
+      } else if (!schema[key].default) {
+        // recurse to validate nested object structure
+        const schemaPart = schema[key];
+        validateConfig(schemaPart, value, thisKeyPath);
+      }
     } else {
-      // config value; validate
-      runValidators(thisKeyPath, schema[key].validators, value);
       if (schema[key].arrayElements) {
         validateArray(schema[key], value, thisKeyPath);
       }
