@@ -471,7 +471,7 @@ ___
 Calls `location.assign` for non-SPA paths and [navigateToUrl](https://single-spa.js.org/docs/api/#navigatetourl) for SPA paths
 
 Example usage:
-```
+```js
 const config = getConfig();
 const submitHandler = () => {
   navigate({ to: config.links.submitSuccess });
