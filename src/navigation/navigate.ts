@@ -32,8 +32,6 @@ export function navigate({ to }: NavigateOptions): void {
   }
 }
 
-console.log("yo!!!");
-
 type NavigateOptions = {
   to: string;
 };
