@@ -617,4 +617,37 @@ describe("getDevtoolsConfig", () => {
   });
 });
 
+describe("temporary config", () => {
+  afterEach(() => {
+    Config.clearAll();
+  });
+
+  it("allows overriding the existing config", async () => {
+    Config.defineConfigSchema("foo-module", { foo: { default: "qux" } });
+    const testConfig = { "foo-module": { foo: "baz" } };
+    Config.provide(testConfig);
+    Config.setTemporaryConfigValue(["foo-module", "foo"], 3);
+    expect(Config.getTemporaryConfig()).toStrictEqual({
+      "foo-module": { foo: 3 }
+    });
+    let config = await Config.getConfig("foo-module");
+    expect(config).toStrictEqual({ foo: 3 });
+    Config.unsetTemporaryConfigValue(["foo-module", "foo"]);
+    config = await Config.getConfig("foo-module");
+    expect(config).toStrictEqual({ foo: "baz" });
+  });
+
+  it("can be gotten and cleared", async () => {
+    Config.defineConfigSchema("foo-module", { foo: { default: "qux" } });
+    Config.setTemporaryConfigValue(["foo-module", "foo"], 3);
+    expect(Config.getTemporaryConfig()).toStrictEqual({
+      "foo-module": { foo: 3 }
+    });
+    Config.clearTemporaryConfig();
+    expect(Config.getTemporaryConfig()).toStrictEqual({});
+    const config = await Config.getConfig("foo-module");
+    expect(config).toStrictEqual({ foo: "qux" });
+  });
+});
+
 const importableConfig = configObject => ({ default: configObject });
