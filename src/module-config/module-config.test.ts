@@ -61,6 +61,29 @@ describe("defineConfigSchema", () => {
       )
     );
   });
+
+  it("logs an error if an unexpected value nested in an array is provided as a key", () => {
+    const schema = {
+      foo: {
+        default: [],
+        arrayElements: { bar: "bad" }
+      }
+    };
+    Config.defineConfigSchema("mod-mod", schema);
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringMatching(/mod-mod.*foo.*bar/)
+    );
+  });
+
+  it("logs an error if any key does not include a default", () => {
+    const schema = {
+      foo: { bar: { description: "lol idk" } }
+    };
+    Config.defineConfigSchema("mod-mod", schema);
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringMatching(/mod-mod.*foo\.bar[\s\S]*default/)
+    );
+  });
 });
 
 describe("getConfig", () => {

@@ -153,6 +153,32 @@ function validateConfigSchema(
         // recurse for nested config keys
         validateConfigSchema(moduleName, schema[key], thisKeyPath);
       }
+      if (schema[key].hasOwnProperty("arrayElements")) {
+        if (hasObjectSchema(schema[key].arrayElements)) {
+          validateConfigSchema(
+            moduleName,
+            schema[key].arrayElements,
+            thisKeyPath + ".arrayElements"
+          );
+        }
+      }
+      if (
+        Object.keys(schema[key]).every(k =>
+          [
+            "description",
+            "validators",
+            "arrayElements",
+            "dictionaryElements"
+          ].includes(k)
+        )
+      ) {
+        console.error(
+          `${moduleName} has bad config schema definition for key '${thisKeyPath}'. ${updateMessage}.` +
+            `\n\nIf you're the maintainer: all config elements must have a default. Received ${JSON.stringify(
+              schema[key]
+            )}`
+        );
+      }
     } else if (key === "validators") {
       for (let validator of schema[key]) {
         if (typeof validator !== "function") {
